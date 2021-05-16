@@ -16,7 +16,7 @@ public class WebInit implements WebApplicationInitializer {
         ac.register(WebConfig.class);
         ac.refresh();
         DispatcherServlet servlet = new DispatcherServlet(ac);
-        ServletRegistration.Dynamic registration = servletContext.addServlet("app",servlet);
+        ServletRegistration.Dynamic registration = servletContext.addServlet("app", servlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
     }

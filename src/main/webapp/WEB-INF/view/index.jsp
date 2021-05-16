@@ -12,6 +12,6 @@
     <title>Accident</title>
 </head>
 <body>
-Hello : ${user}
+Hello : ${users}
 </body>
 </html>
