@@ -10,4 +10,4 @@
 
 Вид системы. Главная страница - это поиск с таблицей.
 
-[![Build Status](https://www.travis-ci.com/KirillReal/-job4j_car_accident.svg?branch=master)](https://www.travis-ci.com/KirillReal/job4j_car_accident)
+[![Build Status](https://www.travis-ci.com/KirillReal/job4j_car_accident.svg?branch=master)](https://www.travis-ci.com/KirillReal/job4j_car_accident)
