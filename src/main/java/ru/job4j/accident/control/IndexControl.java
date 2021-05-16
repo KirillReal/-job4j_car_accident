@@ -13,9 +13,10 @@ public class IndexControl {
     public IndexControl(AccidentService accidentService) {
         this.accidentService = accidentService;
     }
+
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("accidents", accidentService.AccidentGetAll());
+        model.addAttribute("accidents", accidentService.accidentGetAll());
         return "index";
     }
 }
