@@ -37,23 +37,11 @@ public class AccidentControl {
         return "accident/edit";
     }
 
-    @PostMapping("/edit")
-    public String updateAccident(@RequestParam("id") int id, @ModelAttribute Accident accident) {
-        accident.setId(id);
-        accidents.update(accident);
-        return "redirect:/";
-    }
-
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident) {
-        accidents.create(accident);
+    public String save(@RequestParam("id") int id, @ModelAttribute Accident accident) {
+        accident.setId(id);
+        accidents.createOrUpdate(accident);
         return "redirect:/";
-    }
-
-    @GetMapping("/update")
-    public String update(@RequestParam("id") int id, Model model) {
-        model.addAttribute("accident", accidents.findAccident(id).getId());
-        return "accident/update";
     }
 
 }
