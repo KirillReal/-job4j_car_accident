@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
-    private static AtomicInteger idAcc;
+    private static AtomicInteger idAcc = new AtomicInteger();
     private final HashMap<Integer, Accident> accidentHashMap = new HashMap<>();
 
     private final Map<Integer, AccidentType> types = Map.of(
