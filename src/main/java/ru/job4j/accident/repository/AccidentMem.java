@@ -7,10 +7,11 @@ import ru.job4j.accident.model.AccidentType;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
-    private static int idAcc;
+    private static AtomicInteger idAcc;
     private final HashMap<Integer, Accident> accidentHashMap = new HashMap<>();
 
     private final List<AccidentType> types = List.of(
@@ -20,9 +21,12 @@ public class AccidentMem {
     );
 
     public AccidentMem() {
-        accidentHashMap.put(+idAcc, new Accident(1, "accident", "Honda", "Delovaya,7"));
-        accidentHashMap.put(+idAcc, new Accident(2, "accident", "Lada", "Gagarina,13"));
-        accidentHashMap.put(+idAcc, new Accident(3, "accident", "Toyota", "Lenina,9"));
+        accidentHashMap.put(idAcc.getAndIncrement(),
+                new Accident(1, "accident", "Honda", "Delovaya,7"));
+        accidentHashMap.put(idAcc.getAndIncrement(),
+                new Accident(2, "accident", "Lada", "Gagarina,13"));
+        accidentHashMap.put(idAcc.getAndIncrement(),
+                new Accident(3, "accident", "Toyota", "Lenina,9"));
     }
 
     public Collection<Accident> getAccidentHashMap() {
@@ -30,7 +34,7 @@ public class AccidentMem {
     }
 
     public void  create(Accident accident) {
-        accident.setId(++idAcc);
+        accident.setId(idAcc.getAndIncrement());
         accidentHashMap.put(accident.getId(), accident);
     }
 
