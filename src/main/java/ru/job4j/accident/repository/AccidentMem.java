@@ -24,8 +24,8 @@ public class AccidentMem {
         accidentHashMap.put(+idAcc, new Accident(3, "accident", "Toyota", "Lenina,9"));
     }
 
-    public HashMap<Integer, Accident> getAccidentHashMap() {
-        return accidentHashMap;
+    public Accident getAccidentHashMap() {
+        return (Accident) accidentHashMap.values();
     }
 
     public void  create(Accident accident) {
