@@ -48,6 +48,16 @@
                     </td>
                 </tr>
             </c:forEach>
+            <c:forEach items="${accidents}" var="accident">
+                <div>
+        <span>
+            <c:out value="${accident.name}"/>
+        </span>
+                    <span>
+             <a href="<c:url value='/update?id=${accident.id}'/>">Добавить инцидент</a>
+        </span>
+                </div>
+            </c:forEach>
             </tbody>
         </table>
     </div>
