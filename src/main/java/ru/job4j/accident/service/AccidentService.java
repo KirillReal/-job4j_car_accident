@@ -17,4 +17,16 @@ public class AccidentService {
     public Collection<Accident> accidentGetAll() {
         return accidentMem.getAccidentHashMap().values();
     }
+
+    public void create(Accident accident) {
+        accidentMem.create(accident);
+    }
+
+    public void update(Accident accident) {
+        accidentMem.updateAcc(accident);
+    }
+
+    public Accident findAccident(int id) {
+        return accidentMem.findById(id);
+    }
 }
