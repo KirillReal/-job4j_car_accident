@@ -14,7 +14,7 @@ public class AccidentService {
         this.accidentMem = accidentMem;
     }
 
-    public Accident accidentGetAll() {
+    public Collection<Accident> accidentGetAll() {
         return accidentMem.getAccidentHashMap();
     }
 
