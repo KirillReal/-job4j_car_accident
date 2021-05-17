@@ -11,6 +11,7 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.service.AccidentService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -23,10 +24,7 @@ public class AccidentControl {
 
     @GetMapping("/create")
     public String create(Model model) {
-        List<AccidentType> types = new ArrayList<>();
-        types.add(AccidentType.of(1, "Две машины"));
-        types.add(AccidentType.of(2, "Машина и человек"));
-        types.add(AccidentType.of(3, "Машина и велосипед"));
+        List<AccidentType> types = accidents.getAccidentTypesList();
         model.addAttribute("types", types);
         return "accident/create";
     }

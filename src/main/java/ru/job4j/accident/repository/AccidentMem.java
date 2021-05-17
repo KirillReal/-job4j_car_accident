@@ -7,17 +7,19 @@ import ru.job4j.accident.model.AccidentType;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
+
     private static AtomicInteger idAcc;
     private final HashMap<Integer, Accident> accidentHashMap = new HashMap<>();
 
-    private final List<AccidentType> types = List.of(
-            AccidentType.of(1, "Две машины"),
-            AccidentType.of(2, "Машина и человек"),
-            AccidentType.of(3, "Машина и велосипед")
+    private final Map<Integer, AccidentType> types = Map.of(
+            1, AccidentType.of(1, "Две машины"),
+            2, AccidentType.of(2, "Машина и человек"),
+            3, AccidentType.of(3, "Машина и велосипед")
     );
 
     public AccidentMem() {
