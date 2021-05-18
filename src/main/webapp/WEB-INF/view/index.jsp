@@ -23,7 +23,7 @@
 <div class="card" style="width: 100%">
     <a href="<c:url value='/create'/>">Добавить инцидент</a>
     <div class="card-header">
-        Юзеры
+        Пользователи
     </div>
     <div class="card-body">
         <table class="table">
@@ -34,6 +34,7 @@
                 <th scope="col">Описание</th>
                 <th scope="col">Адрес</th>
                 <th scope="col">Редактировать</th>
+                <th scope="col">Тип</th>
             </tr>
             </thead>
             <tbody>
@@ -46,17 +47,10 @@
                     <td>
                         <a href='<c:url value="/edit?id=${accident.id}"/>'> Редактировать</a>
                     </td>
+                    <td><c:out value="${accident.type.name}"/></td>
                 </tr>
-            </c:forEach>
-            <c:forEach items="${accidents}" var="accident">
-                <div>
-        <span>
-            <c:out value="${accident.name}"/>
-        </span>
-                    <span>
-             <a href="<c:url value='/update?id=${accident.id}'/>">Добавить инцидент</a>
-        </span>
-                </div>
+                <tr>
+                </tr>
             </c:forEach>
             </tbody>
         </table>

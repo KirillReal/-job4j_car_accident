@@ -1,50 +1,58 @@
 package ru.job4j.accident.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
-    private static AtomicInteger idAcc = new AtomicInteger();
-    private final HashMap<Integer, Accident> accidentHashMap = new HashMap<>();
+    private static final AtomicInteger ID = new AtomicInteger(1);
+    private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
+    private final Map<Integer, AccidentType> types = new ConcurrentHashMap<>();
 
-    private final Map<Integer, AccidentType> types = Map.of(
-            1, AccidentType.of(1, "Две машины"),
-            2, AccidentType.of(2, "Машина и человек"),
-            3, AccidentType.of(3, "Машина и велосипед")
-    );
-
+    @Autowired
     public AccidentMem() {
-        accidentHashMap.put(idAcc.getAndIncrement(),
-                new Accident(1, "accident", "Honda", "Delovaya,7"));
-        accidentHashMap.put(idAcc.getAndIncrement(),
-                new Accident(2, "accident", "Lada", "Gagarina,13"));
-        accidentHashMap.put(idAcc.getAndIncrement(),
-                new Accident(3, "accident", "Toyota", "Lenina,9"));
+        types.put(1, AccidentType.of(1, "Две машины"));
+        types.put(2, AccidentType.of(2, "Машина и человек"));
+        types.put(3, AccidentType.of(3, "Машина и велосипед"));
+    }
+
+    public List<AccidentType> getAccidentTypes() {
+        return new ArrayList<>(types.values());
+    }
+
+    public List<Accident> findAllAccident() {
+        return new ArrayList<>(accidents.values());
     }
 
     public Collection<Accident> getAccidentHashMap() {
-        return accidentHashMap.values();
+        return accidents.values();
     }
 
     public void  create(Accident accident) {
-        accident.setId(idAcc.getAndIncrement());
-        accidentHashMap.put(accident.getId(), accident);
+        if (accident.getId() == 0) {
+            accident.setId(ID.getAndIncrement());
+        }
+        AccidentType newType = types.get(accident.getType().getId());
+        accident.setType(newType);
+        accidents.put(accident.getId(), accident);
     }
 
     public Accident findById(int id) {
-        return accidentHashMap.get(id);
+        return accidents.get(id);
     }
 
     public Accident updateAcc(Accident accident) {
-        return accidentHashMap.put(accident.getId(), accident);
+        accident.setType(types.get(accident.getType().getId() - 1));
+        return accidents.put(accident.getId(), accident);
     }
 
 }

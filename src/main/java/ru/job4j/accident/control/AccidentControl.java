@@ -1,5 +1,6 @@
 package ru.job4j.accident.control;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +12,14 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.service.AccidentService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
 public class AccidentControl {
+
     private final AccidentService accidents;
 
+    @Autowired
     public AccidentControl(AccidentService accidents) {
         this.accidents = accidents;
     }
@@ -31,13 +33,14 @@ public class AccidentControl {
 
     @GetMapping("/edit")
     public String showAccident(@RequestParam("id") int id, Model model) {
+        List<AccidentType> types = accidents.getAccidentTypesList();
+        model.addAttribute("types", types);
         model.addAttribute("accident", accidents.findAccident(id));
         return "accident/edit";
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam("id") int id, @ModelAttribute Accident accident) {
-        accident.setId(id);
+    public String save(@ModelAttribute Accident accident) {
         accidents.createOrUpdate(accident);
         return "redirect:/";
     }
