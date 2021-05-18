@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.AccidentService;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -28,6 +31,8 @@ public class AccidentControl {
     public String create(Model model) {
         List<AccidentType> types = accidents.getAccidentTypesList();
         model.addAttribute("types", types);
+        Collection<Rule> rules = accidents.getAllRule();
+        model.addAttribute("rules", rules);
         return "accident/create";
     }
 
@@ -36,11 +41,16 @@ public class AccidentControl {
         List<AccidentType> types = accidents.getAccidentTypesList();
         model.addAttribute("types", types);
         model.addAttribute("accident", accidents.findAccident(id));
+        Collection<Rule> rules = accidents.getAllRule();
+        model.addAttribute("rules", rules);
         return "accident/edit";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident) {
+    public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
+        String[] ids = req.getParameterValues("rIds");
+        Arrays.stream(ids).forEach(id -> accident
+                .addRule(accidents.findByIdRule(Integer.parseInt(id))));
         accidents.createOrUpdate(accident);
         return "redirect:/";
     }

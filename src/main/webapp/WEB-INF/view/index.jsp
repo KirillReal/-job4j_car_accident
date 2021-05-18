@@ -35,6 +35,7 @@
                 <th scope="col">Адрес</th>
                 <th scope="col">Редактировать</th>
                 <th scope="col">Тип</th>
+                <th scope="col">Статьи</th>
             </tr>
             </thead>
             <tbody>
@@ -48,6 +49,13 @@
                         <a href='<c:url value="/edit?id=${accident.id}"/>'> Редактировать</a>
                     </td>
                     <td><c:out value="${accident.type.name}"/></td>
+                    <td>
+                        <ul>
+                            <c:forEach items="${accident.rules}" var="rule">
+                                <li> ${rule.name} </li>
+                            </c:forEach>
+                        </ul>
+                    </td>
                 </tr>
                 <tr>
                 </tr>

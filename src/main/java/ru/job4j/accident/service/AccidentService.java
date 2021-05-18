@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.ArrayList;
@@ -45,5 +46,13 @@ public class AccidentService {
 
     public Accident findAccident(int id) {
         return accidentMem.findById(id);
+    }
+
+    public Collection<Rule> getAllRule() {
+        return accidentMem.getRules();
+    }
+
+    public Rule findByIdRule(int id) {
+        return accidentMem.findRule(id);
     }
 }
