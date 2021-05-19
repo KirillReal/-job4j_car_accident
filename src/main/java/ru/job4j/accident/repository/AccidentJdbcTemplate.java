@@ -10,12 +10,9 @@ import ru.job4j.accident.model.Rule;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-@Repository
+//@Repository
 public class AccidentJdbcTemplate {
     private final JdbcTemplate jdbc;
 
@@ -44,7 +41,7 @@ public class AccidentJdbcTemplate {
                     accidentType.setId(rs.getInt("type_id"));
                     accidentType.setName(rs.getString("t_name"));
                     accident.setType(accidentType);
-                    Set<Rule> rules = new HashSet<>(getRulesForAccident(accident.getId()));
+                    List<Rule> rules = new ArrayList<>(getRulesForAccident(accident.getId()));
                     accident.setRules(rules);
                     return accident;
                 });
