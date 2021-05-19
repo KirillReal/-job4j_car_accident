@@ -25,6 +25,9 @@
     <div class="card-header">
         Пользователи
     </div>
+    <li>
+        Пользователь: ${user.username}
+    </li>
     <div class="card-body">
         <table class="table">
             <thead>
