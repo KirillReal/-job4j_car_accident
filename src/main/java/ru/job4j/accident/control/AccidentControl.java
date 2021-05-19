@@ -33,8 +33,9 @@ public class AccidentControl {
     public String create(Model model) {
         List<AccidentType> types = accidents.getAccidentTypesList();
         model.addAttribute("types", types);
-        Collection<Rule> rules = accidents.getAllRule();
+        List<Rule> rules = accidents.getAllRule();
         model.addAttribute("rules", rules);
+
         return "accident/create";
     }
 

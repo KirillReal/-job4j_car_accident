@@ -4,22 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "rule")
-public class Rule {
+@Table(name = "authorities")
+public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
-
-    public static Rule of(int id, String name) {
-        Rule rule = new Rule();
-        rule.id = id;
-        rule.name = name;
-        return rule;
-    }
+    private String authority;
 
     public int getId() {
         return id;
@@ -29,12 +20,12 @@ public class Rule {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override
@@ -45,12 +36,13 @@ public class Rule {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Rule rule = (Rule) o;
-        return id == rule.id;
+        Authority authority = (Authority) o;
+        return id == authority.id;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
