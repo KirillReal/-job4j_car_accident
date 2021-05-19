@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//@Repository
+@Repository
 public class AccidentMem {
     private static final AtomicInteger ID = new AtomicInteger(1);
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
