@@ -11,6 +11,7 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.AccidentService;
+import ru.job4j.accident.service.JdbcService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -20,10 +21,10 @@ import java.util.List;
 @Controller
 public class AccidentControl {
 
-    private final AccidentService accidents;
+    private final JdbcService accidents;
 
     @Autowired
-    public AccidentControl(AccidentService accidents) {
+    public AccidentControl(JdbcService accidents) {
         this.accidents = accidents;
     }
 
