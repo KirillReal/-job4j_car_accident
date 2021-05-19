@@ -10,7 +10,7 @@ import ru.job4j.accident.repository.AccidentJdbcTemplate;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+//@Service
 public class JdbcService {
     private final AccidentJdbcTemplate accidentJdbcTemplate;
 

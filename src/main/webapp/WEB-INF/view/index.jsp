@@ -48,7 +48,7 @@
                     <td>
                         <a href='<c:url value="/edit?id=${accident.id}"/>'> Редактировать</a>
                     </td>
-                    <td><c:out value="${accident.type.name}"/></td>
+                    <td><c:out value="${accident.type.id}"/></td>
                     <td>
                         <ul>
                             <c:forEach items="${accident.rules}" var="rule">

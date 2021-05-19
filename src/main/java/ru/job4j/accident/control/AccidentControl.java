@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
+import ru.job4j.accident.service.AccidentDataService;
 import ru.job4j.accident.service.AccidentService;
 import ru.job4j.accident.service.JdbcService;
 
@@ -21,10 +22,10 @@ import java.util.List;
 @Controller
 public class AccidentControl {
 
-    private final JdbcService accidents;
+    private final AccidentDataService accidents;
 
     @Autowired
-    public AccidentControl(JdbcService accidents) {
+    public AccidentControl(AccidentDataService accidents) {
         this.accidents = accidents;
     }
 
