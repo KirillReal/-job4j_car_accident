@@ -22,6 +22,11 @@
         <tr>
             <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
         </tr>
+        <label class="wrongUser" style="color: red">
+            <c:if test="${not empty error}">
+                ${error}
+            </c:if>
+        </label>
     </table>
 </form>
 </body>

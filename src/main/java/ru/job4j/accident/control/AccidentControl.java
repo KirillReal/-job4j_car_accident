@@ -1,6 +1,7 @@
 package ru.job4j.accident.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +12,9 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.AccidentDataService;
-import ru.job4j.accident.service.AccidentService;
-import ru.job4j.accident.service.JdbcService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -35,7 +33,9 @@ public class AccidentControl {
         model.addAttribute("types", types);
         List<Rule> rules = accidents.getAllRule();
         model.addAttribute("rules", rules);
-
+        model.addAttribute(
+                "user", SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
         return "accident/create";
     }
 
@@ -44,8 +44,11 @@ public class AccidentControl {
         List<AccidentType> types = accidents.getAccidentTypesList();
         model.addAttribute("types", types);
         model.addAttribute("accident", accidents.findAccident(id));
-        Collection<Rule> rules = accidents.getAllRule();
+        List<Rule> rules = accidents.getAllRule();
         model.addAttribute("rules", rules);
+        model.addAttribute(
+                "user", SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
         return "accident/edit";
     }
 
