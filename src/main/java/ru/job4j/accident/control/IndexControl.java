@@ -20,12 +20,10 @@ public class IndexControl {
 
     @GetMapping("/")
     public String index(Model model) {
-        List<String> users = new ArrayList<>();
         List<Accident> accidents = accidentDataService.accidentGetAll();
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal());
         model.addAttribute("accidents", accidents);
-        model.addAttribute("users", users);
         return "index";
     }
 }
