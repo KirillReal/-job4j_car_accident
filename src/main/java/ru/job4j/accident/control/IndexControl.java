@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.service.AccidentDataService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,10 +20,12 @@ public class IndexControl {
 
     @GetMapping("/")
     public String index(Model model) {
+        List<String> users = new ArrayList<>();
         List<Accident> accidents = accidentDataService.accidentGetAll();
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal());
         model.addAttribute("accidents", accidents);
+        model.addAttribute("users", users);
         return "index";
     }
 }

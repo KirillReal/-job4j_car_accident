@@ -20,6 +20,7 @@
     <title>Accident</title>
 </head>
 <body>
+Hello : ${users}
 <div class="card" style="width: 100%">
     <a href="<c:url value='/create'/>">Добавить инцидент</a>
     <div class="card-header">
